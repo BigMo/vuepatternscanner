@@ -6,6 +6,9 @@ module.exports = {
     port: "8080",
   },
   publicPath: '/vuepatternscanner',
+  outputDir: 'docs',
+  filenameHashing: false,
+  productionSourceMap: false,
   runtimeCompiler: true,
   chainWebpack: (config) => {
     config.optimization.delete("splitChunks");
