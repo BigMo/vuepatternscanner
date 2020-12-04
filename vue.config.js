@@ -5,12 +5,7 @@ module.exports = {
   devServer: {
     port: "8080",
   },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/vuepatternscanner'
-    : '/',
-  baseUrl: process.env.NODE_ENV === 'production'
-    ? '/vuepatternscanner/'
-    : '/',
+  publicPath: '/vuepatternscanner',
   runtimeCompiler: true,
   chainWebpack: (config) => {
     config.optimization.delete("splitChunks");
