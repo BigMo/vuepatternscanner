@@ -1,20 +1,17 @@
 {
-  "name": "vue-bootstrap-boilerplate",
-  "version": "2.0.0",
-  "author": "Guillaume Duhan",
+  "name": "vuepatternscanner",
+  "version": "0.5.0",
+  "author": "BigMo // Zat",
   "contributors": [
-    "kaangokdemir",
-    "malinsdd"
+    "bigmo"
   ],
   "homepage": "https://github.com/bigmo/vuepatternscanner",
-  "main": "server.js",
-  "description": "Vue-Cli-3, Vuex, Vue-Router, Bootstrap 4, Babel, ESLint, Axios, SCSS and Pug/HTML boilerplate.",
+  "description": "A pattern scanner editor based on Vue.js.",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "deploy": "node ./node_modules/vue-gh-pages/index.js"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -57,10 +54,6 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest"
   }
