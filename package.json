@@ -1,17 +1,14 @@
 {
   "name": "vuepatternscanner",
   "version": "0.5.0",
-  "author": "BigMo // Zat",
-  "contributors": [
-    "bigmo"
-  ],
-  "homepage": "https://github.com/bigmo/vuepatternscanner",
-  "description": "A pattern scanner editor based on Vue.js.",
   "private": true,
+  "description": "A pattern scanner editor based on Vue.js.",
+  "author": "BigMo // Zat",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -38,14 +35,18 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.3",
     "babel-preset-airbnb": "^4.1.0",
+    "chalk": "^4.0.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-vue": "^5.2.3",
+    "execa": "^4.0.0",
+    "node-emoji": "^1.10.0",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.0",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-processor-html": "^1.0.0",
+    "vue-cli-plugin-gh-pages-auto-deploy": "~0.3.1",
     "vue-gh-pages": "^1.19.1",
     "vue-template-compiler": "^2.6.10"
   },
@@ -56,5 +57,9 @@
   },
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest"
-  }
+  },
+  "contributors": [
+    "bigmo"
+  ],
+  "homepage": "https://github.com/bigmo/vuepatternscanner"
 }
