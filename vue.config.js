@@ -8,6 +8,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/vuepatternscanner/'
     : '/',
+  output: 'docs',
   filenameHashing: false,
   productionSourceMap: false,
   runtimeCompiler: true,
