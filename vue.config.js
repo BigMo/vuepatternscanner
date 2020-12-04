@@ -5,8 +5,9 @@ module.exports = {
   devServer: {
     port: "8080",
   },
-  publicPath: '/vuepatternscanner/',
-  outputDir: 'docs',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/vuepatternscanner/'
+    : '/',
   filenameHashing: false,
   productionSourceMap: false,
   runtimeCompiler: true,
