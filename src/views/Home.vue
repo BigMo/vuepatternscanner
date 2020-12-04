@@ -22,11 +22,11 @@
               offsets dynamically&quot;</a
             >.
           </p>
-          <b-button variant="primary" href="/workbench">
+          <b-button variant="primary" href="./workbench">
             <font-awesome-icon icon="rocket" />
             Get Started</b-button
           >
-          <b-button variant="secondary" class="floatbutton">
+          <b-button variant="secondary" class="floatbutton" href="https://github.com/BigMo/vuepatternscanner" target="_blank">
             <font-awesome-icon :icon="['fab', 'github']" /> View on GitHub
           </b-button>
         </b-jumbotron>

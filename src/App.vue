@@ -15,8 +15,8 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="/">Home</b-nav-item>
-            <b-nav-item href="/workbench">Workbench</b-nav-item>
+            <b-nav-item href="./">Home</b-nav-item>
+            <b-nav-item href="./workbench">Workbench</b-nav-item>
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
@@ -34,13 +34,10 @@
 
 <script>
 export default {
-  name:'App',
-  methods: {
-    
-  }
-}
+  name: "App",
+  methods: {},
+};
 </script>
 
 <style>
-
 </style>
