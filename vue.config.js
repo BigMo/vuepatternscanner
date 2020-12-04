@@ -6,7 +6,7 @@ module.exports = {
     port: "8080",
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/vuepatternscanner/'
+    ? '/vuepatternscanner'
     : '/',
   runtimeCompiler: true,
   chainWebpack: (config) => {
