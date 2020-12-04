@@ -9,7 +9,7 @@ module.exports = {
     ? '/vuepatternscanner'
     : '/',
   baseUrl: process.env.NODE_ENV === 'production'
-    ? '/vuepatternscanner'
+    ? '/vuepatternscanner/'
     : '/',
   runtimeCompiler: true,
   chainWebpack: (config) => {
