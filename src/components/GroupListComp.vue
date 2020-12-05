@@ -5,8 +5,8 @@
     @mouseover="showDel = true"
     @mouseleave="showDel = false"
   >
-    <b-card-header @click="toggleVisible" class="groupListHeader">
-      <font-awesome-icon :icon="visible ? 'chevron-up' : 'chevron-down'" />
+    <b-card-header @click="toggleVisible" class="groupListHeader" >
+      <font-awesome-icon :icon="visible ? 'chevron-up' : 'chevron-down'"/>
       {{ group.name }}
       <div style="float: right" v-if="showDel">
         <font-awesome-icon
@@ -25,6 +25,9 @@
           @click="onPatternClick(p)"
           :active="currentPattern == p"
           >{{ p.name }}
+        </b-list-group-item>
+        <b-list-group-item v-if="group.patterns.length == 0">
+          <i>(Empty group)</i>
         </b-list-group-item>
         <b-list-group-item class="groupListButton">
           <b-button
@@ -48,11 +51,12 @@
 
 <script>
 import NewPatternModal from "@/components/NewPatternModal.vue";
+import ClickToEdit from '@/components/ClickToEdit.vue'
 import store from "@/store/index.js";
 
 export default {
   name: "GroupListComp",
-  components: { NewPatternModal },
+  components: { NewPatternModal, ClickToEdit },
   props: ["group", "dummy"],
   data: function () {
     return {
@@ -118,7 +122,7 @@ export default {
   cursor: pointer;
 }
 .groupList {
-  margin-bottom: 1em;
+  /*margin-bottom: 1em;*/
 }
 .groupListButton {
   padding: 0.4em !important;

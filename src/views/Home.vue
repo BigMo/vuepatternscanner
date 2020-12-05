@@ -22,7 +22,7 @@
               offsets dynamically&quot;</a
             >.
           </p>
-          <b-button variant="primary" to="/workbench">
+          <b-button variant="primary" to="/editor">
             <font-awesome-icon icon="rocket" />
             Get Started</b-button
           >

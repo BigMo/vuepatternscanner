@@ -44,8 +44,8 @@ export default {
     checkName: function () {
       if (this.groupName == null || this.groupName.length == 0)
         return (this.error = "Please enter a name.");
-      if (this.store && this.store.getters.groupNameTaken(this.groupName))
-        return (this.error = "Group with this name already exists.");
+      //if (this.store && this.store.getters.groupNameTaken(this.groupName))
+      //  return (this.error = "Group with this name already exists.");
       this.error = null;
     },
   },

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
-import Workbench from '@/views/Workbench.vue'
+import Editor from '@/views/Editor.vue'
 
 import NotFound from '@/components/NotFound.vue'
 
@@ -13,13 +13,10 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
-    meta: {
-      auth: false,
-    },
   }, {
-    path: '/workbench',
-    name: 'Workbench',
-    component: Workbench
+    path: '/editor',
+    name: 'Editor',
+    component: Editor
   }, {
     path: '*',
     name: 'NotFound',

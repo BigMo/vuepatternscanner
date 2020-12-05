@@ -15,7 +15,7 @@
     </b-col>
     <b-col>
       <code>
-        {{patternRow.comment}}
+        <ClickToEdit :value="patternRow.comment" @input="patternRow.comment = $event"></ClickToEdit>
       </code>
     </b-col>
   </b-row>
@@ -24,10 +24,11 @@
 <script>
 import {PatternByte} from '@/model/project.js'
 import PatternByteComp from '@/components/PatternByteComp.vue'
+import ClickToEdit from '@/components/ClickToEdit.vue'
 
 export default {
   name: "PatternRowComp",
-  components: {PatternByteComp},
+  components: {PatternByteComp, ClickToEdit},
   props: ['patternRow', 'editable'],
   data: function() {
     return {

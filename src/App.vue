@@ -16,13 +16,13 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item to="/">Home </b-nav-item>
-            <b-nav-item to="/workbench">Workbench</b-nav-item>
+            <b-nav-item to="/editor">Editor</b-nav-item>
           </b-navbar-nav>
 
-          <b-navbar-nav class="ml-auto">
+          <!--<b-navbar-nav class="ml-auto">
             <b-nav-item href="#">Import</b-nav-item>
             <b-nav-item href="#">Export</b-nav-item>
-          </b-navbar-nav>
+          </b-navbar-nav>-->
         </b-collapse>
       </b-navbar>
     </b-container>
