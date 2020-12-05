@@ -37,7 +37,7 @@ export default {
   name: "App",
   methods: {},
   mounted() {
-    console.log("hai 1");
+    console.log("hai 2?");
   },
 };
 </script>
