@@ -17,7 +17,7 @@
             :state="!error"
           ></b-form-input>
           <b-form-invalid-feedback id="groupName">
-            {{error}}
+            {{ error }}
           </b-form-invalid-feedback>
         </b-col>
       </b-row>
@@ -44,13 +44,8 @@ export default {
     checkName: function () {
       if (this.groupName == null || this.groupName.length == 0)
         return (this.error = "Please enter a name.");
-      if (this.store && this.store.getters.groups) {
-        if (
-          this.store.getters.groups.filter((g) => g.name == this.groupName)
-            .length > 0
-        )
-          return (this.error = "Group with this name already exists.");
-      }
+      if (this.store && this.store.getters.groupNameTaken(this.groupName))
+        return (this.error = "Group with this name already exists.");
       this.error = null;
     },
   },

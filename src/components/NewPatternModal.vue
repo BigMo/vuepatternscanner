@@ -89,9 +89,7 @@ export default {
     checkName: function () {
       if (this.patternName == null || this.patternName.length == 0)
         return (this.nameError = "Enter a name.");
-      if (
-        this.group.patterns.filter((p) => p.name == this.patternName).length > 0
-      )
+      if (this.group && this.group.hasPatternOfName(this.patternName))
         return (this.nameError = "Pattern with this name already exists.");
       this.nameError = null;
     },

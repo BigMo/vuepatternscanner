@@ -40,12 +40,33 @@ class Project {
         ]);
         return new Project('Demo Project', [g1, g2]);
     }
+
+    get firstPattern() {
+        for (var group of this.groups)
+            for (var pattern of group.patterns)
+                if (pattern) return pattern;
+        return null;
+    }
+
+    hasGroupOfName(name) {
+        return this.groups.filter(g => g.name == name).length > 0;
+    }
 }
 
 class Group {
     constructor(name, patterns) {
         this.name = name ?? '';
         this.patterns = patterns ?? [];
+    }
+
+    get firstPattern() {
+        for (var pattern of patterns)
+            if (pattern) return pattern;
+        return null;
+    }
+
+    hasPatternOfName(name) {
+        return this.patterns.filter(p => p.name == name).length > 0;
     }
 }
 
@@ -56,7 +77,7 @@ class Pattern {
     }
 
     get bytesArray() {
-        return [].concat.apply([], this.rows.map(r=>r.bytesArray))
+        return [].concat.apply([], this.rows.map(r => r.bytesArray))
     }
 
     get hexString() {

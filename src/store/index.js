@@ -6,6 +6,7 @@ import { Project, Group, Pattern, PatternRow, PatternByte } from '@/model/projec
 Vue.use(Vuex)
 
 const POPULATE_JSON = function (project, obj) {
+  project.name = obj.name
   for (var g in obj.groups) {
     var group = obj.groups[g]
     var _group = new PatternGroup(group.name)
@@ -29,69 +30,81 @@ const POPULATE_JSON = function (project, obj) {
 
 const store = new Vuex.Store({
   state: {
-    project: null,
-    currentPattern: null
+    projects: null,
+    currentPattern: null,
+    currentProject: null
   },
   mutations: {
     saveLocally(state) {
-      localStorage.setItem('VPSProject', JSON.stringify(state.project))
+      localStorage.setItem('VPSProjects', JSON.stringify(state.currentProjects))
     },
     loadLocally(state) {
-      json = localStorage.getItem('VPSProject')
+      state.projects = []
+      json = localStorage.getItem('VPSProjects')
       if (json) {
-        state.project = new Project()
-        POPULATE_JSON(state.project, JSON.parse(json))
+        var arr = JSON.parse(json)
+        state.projects = arr.map(obj => POPULATE_JSON(new Project(), obj))
       }
+      state.currentProject = state.projects.length > 0 ? state.projects[0] : null;
+      state.currentPattern = state.currentProject ? state.currentProject.firstPattern : null;
     },
     createInitial(state) {
-      state.project = Project.newProject()
-      state.currentPattern = state.project.groups[0].patterns[0]
+      state.currentProject = Project.newProject()
+      state.currentPattern = state.currentProject.groups[0].patterns[0]
+    },
+    setCurrentProject(state, project) {
+      state.currentProject = project;
+      state.currentPattern = state.currentProject ? state.currentProject.firstPattern : null;
     },
     setCurrentPattern(state, pattern) {
       state.currentPattern = pattern;
     },
     removeGroup(state, group) {
-      state.project.groups = state.project.groups.filter(g => g != group)
-      if (state.project.groups.length > 0 && state.project.groups[0].patterns.length > 0)
-        state.currentPattern = state.project.groups[0].patterns[0]
+      state.currentProject.groups = state.currentProject.groups.filter(g => g != group)
+      if (state.currentProject.groups.length > 0 && state.currentProject.groups[0].patterns.length > 0)
+        state.currentPattern = state.currentProject.groups[0].patterns[0]
       else
         state.currentPattern = null
     },
     removePattern(state, pattern) {
-      var groups = state.project.groups.filter(g => g.patterns.findIndex(p => p == pattern) != -1);
+      var groups = state.currentProject.groups.filter(g => g.patterns.findIndex(p => p == pattern) != -1);
       if (groups.length == 0) return;
       var group = groups[0];
       group.patterns = group.patterns.filter(p => p != pattern);
       if (state.currentPattern == pattern)
-        state.currentPattern = null
+        state.currentPattern = group.firstPattern ?? state.currentProject.firstPattern;
+    },
+    removeProject(state, project) {
+      state.projects = state.projects.filter(p => p != project)
+      state.currentProject = state.projects.length > 0 ? state.projects[0] : null;
+      state.currentPattern = state.currentProject ? state.currentProject.firstPattern : null;
     },
     createGroup(state, name) {
-      state.project.groups.push(new Group(name))
+      state.currentProject.groups.push(new Group(name))
     },
     createPattern(state, data) {
-      var groups = state.project.groups.filter(g => g.name == data.group.name)
+      var groups = state.currentProject.groups.filter(g => g.name == data.group.name)
       if (groups)
         groups[0].patterns.push(data.pattern)
+    },
+    createProject(state, name) {
+      var proj = new Project(name);
+      state.projects.push(proj);
+      state.currentProject = proj;
     }
   },
   getters: {
-    project: state => state.project,
+    projects: state => state.projects,
     groups: state => {
-      if (state && state.project)
-        return state.project.groups
-      else
-        return null
+      return state && state.currentProject ? state.currentProject.groups : null;
     },
     currentPattern: state => state.currentPattern,
-    elements: state => {
-      var items = []
-      for (var group in state.project.groups) {
-        items.push(group)
-        for (var pattern in group.patterns) {
-          items.push(pattern)
-        }
-      }
-      return items
+    currentProject: state => state.currentProject,
+    projectNameTaken: (state) => (name) => {
+      return state.projects.filter(p => p.name == name).length > 0;
+    },
+    groupNameTaken: (state) => (name) => {
+      return state.currentProject && state.currentProject.hasGroupOfName(name);
     }
   }
 })

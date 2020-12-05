@@ -10,10 +10,6 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '*',
-    name: 'NotFound',
-    component: NotFound,
-  }, {
     path: '/',
     name: 'home',
     component: Home,
@@ -24,6 +20,10 @@ const routes = [
     path: '/workbench',
     name: 'Workbench',
     component: Workbench
+  }, {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound,
   }
 ]
 
