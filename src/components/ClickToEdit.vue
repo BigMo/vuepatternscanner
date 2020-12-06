@@ -1,6 +1,6 @@
 <template>
   <div class="editlabel">
-    <b-form-input
+    <b-form-input class="inline"
       type="text"
       size="sm"
       v-if="edit"
@@ -14,8 +14,9 @@
       @click="edit = true"
       @mouseover="hover = true"
       @mouseleave="hover = false"
+      style="min-width:100px;"
     >
-      {{ valueLocal }}
+      {{ enquote ? `"${valueLocal}"` : valueLocal }}
       <font-awesome-icon icon="pen" v-if="hover" />
     </span>
   </div>
@@ -23,7 +24,7 @@
 
 <script>
 export default {
-  props: ["value"],
+  props: ["value", "enquote"],
 
   data() {
     return {
@@ -57,6 +58,11 @@ export default {
 
 <style scoped>
 .editlabel {
+  display: inline !important;
   cursor: pointer;
+}
+.inline {
+  display: inline !important;
+  width: auto;
 }
 </style>

@@ -38,7 +38,7 @@ class Project {
                 PatternRow.fromBytes([0x8B, 0x0d, 0x04, 0xc1, 0x43, 0x11], 'MOV ECX, dword ptr [EPOHLHBOHHE__TypeInfo]')
             ])
         ]);
-        return new Project('Demo Project', [g1, g2]);
+        return new Project('New Project', [g1, g2]);
     }
 
     get firstPattern() {

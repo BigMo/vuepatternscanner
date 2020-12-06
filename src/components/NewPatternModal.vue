@@ -1,5 +1,6 @@
 <template>
   <b-modal
+    @hidden="clear"
     size="lg"
     :id="id"
     title="Create New Pattern"
@@ -83,6 +84,11 @@ export default {
     };
   },
   methods: {
+    clear(){
+      this.patternName = ""
+      this.patternInput = ""
+      this.parser = null
+    },
     onOk: function (event) {
       this.$emit("patternCreated", this.group, this.pattern);
     },

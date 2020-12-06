@@ -59,7 +59,7 @@ export default {
     linkClicked: function (event, data) {},
   },
   mounted: function () {
-    store.commit("createInitial");
+    //store.commit("createInitial");
   },
   computed: {
     currentPattern: function () {

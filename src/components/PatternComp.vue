@@ -1,7 +1,9 @@
 <template>
   <b-card no-body :title="showName ? pattern.name : 'Pattern'" style="overflow:overlay;">
     <b-card-header header-bg-variant="dark" header-text-variant="white">
-      {{showName ? pattern.name : 'Pattern'}}
+      <ClickToEdit v-if="editable" :value="pattern.name" @input="rename"></ClickToEdit>
+      <span v-else>Pattern</span>
+      <!--{{showName ? pattern.name : 'Pattern'}}-->
       <div style="float: right" v-if="showDelete">
         <font-awesome-icon
           icon="trash"
@@ -17,6 +19,7 @@
           :key="pattern.rows.findIndex((row) => row == r)"
           :patternRow="r"
           :editable="editable"
+          :idx="pattern.rows.findIndex((row) => row == r)"
         ></PatternRowComp>
       </b-card-text>
     </b-card-body>
@@ -52,14 +55,15 @@
 
 <script>
 import PatternRowComp from "@/components/PatternRowComp.vue";
+import ClickToEdit from '@/components/ClickToEdit.vue'
 import store from "@/store/index.js";
 
 export default {
   name: "PatternComp",
   props:['pattern', 'showName', 'showDelete', 'editable'],
-  components: { PatternRowComp },
+  components: { PatternRowComp, ClickToEdit },
   methods: {
-    deletePattern: function (event) {
+    deletePattern(event) {
       event.stopPropagation();
       this.$bvModal
         .msgBoxConfirm(
@@ -82,6 +86,9 @@ export default {
           // An error occurred
         });
     },
+    rename(name) {
+      store.commit('renamePattern', name)
+    }
   }
 };
 </script>
